@@ -1,0 +1,41 @@
+fieldset{
+	width:60%;
+	margin: auto;
+	font-family: 'Antic', sans-serif;
+}
+legend{
+	text-align: center;
+	font-family: 'Abel', sans-serif;
+	font-size:32px;
+}
+.error{
+	color: red;
+}
+.passed{
+	color: green;
+}
+
+.field{
+	text-align: right;
+	float: left;
+	width: 250px;
+}
+.check{
+    margin-left:268px;
+}
+
+.textbox{
+	margin-left: 20px;
+	width: 250px;
+}
+.button{
+	display: block;
+	margin-left: 270px;
+	background: transparent;
+	padding:10px;
+	font-family: 'Asul', sans-serif;
+	font-weight: 600;
+}	
+.button:hover{
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}		
