@@ -13,35 +13,39 @@
 
 			if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-				if(empty($_POST["name"])){
-					$error_name="Name is Required";
-				}else{
+				if(isset($_POST["name"])&& $_POST["name"]!==""){
 					$name=user_input($_POST["name"]);
 				
 					if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
       					$error_name = "Creepy Name"; 
-      				}
+      				}					
+				}else{
+					$error_name="Name is Required";
       			}
 
-				if(empty($_POST["gender"])){
-					$error_gender="LOL!";
-				}else{
+				if(isset($_POST["gender"])&& $_POST["gender"]!==""){
 					$gender=$_POST["gender"];
+				}else{
+					$error_gender="LOL! Any Doubt?";
 				}
 
-				if(empty($_POST["email"])){
-					$error_email="Email is Required";
-				}else{
+				if(isset($_POST["email"])&& $_POST["email"]!==""){
 					$email=user_input($_POST["email"]);
 
-					 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+					if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
      					$error_email= "You must be Joking"; 
-     				}	
-				}
-				if(empty($_POST["phone"])){
-					$error_phone="How will we call you?";
+     				}					
 				}else{
-					$phone=user_input($_POST["phone"]);
+					$error_email="Email is Required";	
+				}
+				if(isset($_POST["phone"])&& $_POST["phone"]!==""){
+					$phone=user_input($_POST["phone"]);	
+
+					if (!preg_match("/^[1-9][0-9]*$/",$phone)) {
+      					$error_phone = "Did you just make that up?";	
+      				}			
+				}else{
+					$error_phone="How will we call you?";
 				}
 
 				$textarea=user_input($_POST["textarea"]);
@@ -72,9 +76,9 @@
 					<p><label class="field" for="name">Name:</label>
 					<input type="text" name="name" id="name" class="textbox" value="<?php echo $name; ?>"><span class="error">*<?php  echo $error_name; ?></span></p>
 					<p><label class="field">You are:</label>&nbsp;&nbsp;
-					<input type="checkbox" name="occu" value="student">Student<br>
-					<input type="checkbox" class="check" name="occu" value="pro">Professional</br>
-					<input type="checkbox" class="check" name="occu" value="other">Other</p>
+					<input type="checkbox" name="occu" value="student" <?php if (isset($occu)&& $occu=="student") echo "checked" ?>>Student<br>
+					<input type="checkbox" class="check" name="occu" value="pro" <?php if (isset($occu)&& $occu=="pro") echo "checked" ?>>Professional</br>
+					<input type="checkbox" class="check" name="occu" value="other" <?php if (isset($occu)&& $occu=="other") echo "checked" ?>>Other</p>
 					<p><label class="field">Gender:</label>&nbsp;&nbsp;
 					<input type="radio" name="gender" <?php if (isset($gender) && $gender=="male") echo "checked";?> value="male">Male
 					<input type="radio" name="gender" <?php if (isset($gender) && $gender=="female") echo "checked";?> value="female">Female<span class="error">*<?php echo $error_gender; ?></span></p>
